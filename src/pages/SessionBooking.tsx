@@ -11,6 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popove
 import { Star, Clock, DollarSign, User, CalendarIcon, Search } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "../lib/utils";
+import { Navigation } from "../components/Navigation";
 
 const SessionBooking = () => {
   const [selectedDate, setSelectedDate] = useState<Date>();
@@ -113,6 +114,7 @@ const SessionBooking = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+       <Navigation />
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
