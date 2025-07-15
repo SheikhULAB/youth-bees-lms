@@ -2,17 +2,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Menu, X, BookOpen, BriefcaseIcon, Video, User } from "lucide-react";
+import { Menu, X, BookOpen, BriefcaseIcon, Video, User, Calendar } from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Courses", href: "/#courses" },
+    { name: "Courses", href: "/courses", icon: BookOpen },
+    { name: "Services", href: "/services" },
+    { name: "Events", href: "/events", icon: Calendar },
     { name: "1:1 Sessions", href: "/sessions", icon: Video },
     { name: "Jobs", href: "/jobs", icon: BriefcaseIcon },
-    { name: "Services", href: "/#services" },
   ];
 
   return (
