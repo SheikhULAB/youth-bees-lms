@@ -27,11 +27,11 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/services" element={<Services />} />
-          {/* <Route path="/events" element={<Events/>} /> */}
+          <Route path="/events" element={<Events/>} />
           <Route path="/dashboard/student" element={<StudentDashboard />} />
           <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
           <Route path="/dashboard/partner" element={<PartnerDashboard />} />
