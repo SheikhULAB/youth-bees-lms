@@ -114,9 +114,9 @@ const SessionBooking = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-       <Navigation />
+      <Navigation />
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+      <div className="gradient-youthbees text-white py-16 pt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">Book 1:1 Learning Sessions</h1>
@@ -146,7 +146,7 @@ const SessionBooking = () => {
                   </SelectContent>
                 </Select>
                 
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                <Button className="gradient-youthbees-warm text-white hover:opacity-90 transition-opacity">
                   Find Mentors
                 </Button>
               </div>
@@ -166,7 +166,7 @@ const SessionBooking = () => {
 
             <div className="space-y-6">
               {filteredTeachers.map((teacher) => (
-                <Card key={teacher.id} className="hover:shadow-lg transition-shadow duration-300">
+                <Card key={teacher.id} className="hover:shadow-lg transition-shadow duration-300 hover:border-logo-orange/30">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <img
@@ -180,13 +180,13 @@ const SessionBooking = () => {
                           <div>
                             <h3 className="text-xl font-semibold text-gray-900 mb-1">{teacher.name}</h3>
                             <div className="flex items-center mb-2">
-                              <Star className="h-4 w-4 text-yellow-400 fill-current mr-1" />
+                              <Star className="h-4 w-4 text-logo-yellow fill-current mr-1" />
                               <span className="font-medium">{teacher.rating}</span>
                               <span className="text-gray-600 ml-1">({teacher.reviewCount} reviews)</span>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-2xl font-bold text-green-600">৳{teacher.hourlyRate}</div>
+                            <div className="text-2xl font-bold text-logo-green">৳{teacher.hourlyRate}</div>
                             <div className="text-sm text-gray-600">per hour</div>
                           </div>
                         </div>
@@ -196,7 +196,7 @@ const SessionBooking = () => {
                         <div className="mb-3">
                           <div className="flex flex-wrap gap-2">
                             {teacher.expertise.map((skill, index) => (
-                              <Badge key={index} variant="secondary">{skill}</Badge>
+                              <Badge key={index} variant="secondary" className="bg-logo-orange/10 text-logo-orange hover:bg-logo-orange/20">{skill}</Badge>
                             ))}
                           </div>
                         </div>
@@ -214,7 +214,7 @@ const SessionBooking = () => {
                           
                           <Button 
                             onClick={() => setSelectedTeacher(teacher)}
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                            className="gradient-youthbees-warm text-white hover:opacity-90 transition-opacity hover:scale-105"
                           >
                             Book Session
                           </Button>
@@ -229,14 +229,14 @@ const SessionBooking = () => {
 
           {/* Booking Form */}
           <div className="lg:col-span-1">
-            <Card className="sticky top-4">
+            <Card className="sticky top-4 border-logo-orange/20">
               <CardHeader>
-                <CardTitle>Book Your Session</CardTitle>
+                <CardTitle className="text-logo-orange">Book Your Session</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {selectedTeacher ? (
                   <>
-                    <div className="p-4 bg-blue-50 rounded-lg">
+                    <div className="p-4 bg-gradient-to-r from-logo-orange/10 to-logo-yellow/10 rounded-lg border border-logo-orange/20">
                       <div className="flex items-center space-x-3">
                         <img
                           src={selectedTeacher.image}
@@ -244,7 +244,7 @@ const SessionBooking = () => {
                           className="w-12 h-12 rounded-full object-cover"
                         />
                         <div>
-                          <h4 className="font-semibold">{selectedTeacher.name}</h4>
+                          <h4 className="font-semibold text-logo-orange">{selectedTeacher.name}</h4>
                           <p className="text-sm text-gray-600">৳{selectedTeacher.hourlyRate}/hour</p>
                         </div>
                       </div>
@@ -331,10 +331,10 @@ const SessionBooking = () => {
                       />
                     </div>
 
-                    <div className="p-4 bg-gray-50 rounded-lg">
+                    <div className="p-4 bg-gradient-to-r from-logo-green/10 to-logo-blue/10 rounded-lg border border-logo-green/20">
                       <div className="flex justify-between items-center">
                         <span>Session Cost:</span>
-                        <span className="text-xl font-bold">
+                        <span className="text-xl font-bold text-logo-green">
                           ৳{selectedTeacher.hourlyRate * (parseInt(bookingForm.sessionDuration) / 60)}
                         </span>
                       </div>
@@ -342,7 +342,7 @@ const SessionBooking = () => {
 
                     <Button 
                       onClick={handleBookSession}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                      className="w-full gradient-youthbees-warm text-white hover:opacity-90 transition-all hover:scale-105"
                       disabled={!selectedDate || !bookingForm.topic || !bookingForm.preferredTime}
                     >
                       Send Booking Request

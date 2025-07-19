@@ -88,7 +88,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       <Navigation />
       
       {/* Hero Section */}
@@ -96,7 +96,7 @@ const Services = () => {
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             Our
-            <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
               Services
             </span>
           </h1>
@@ -123,9 +123,9 @@ const Services = () => {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {serviceDetails.map((service, index) => (
-              <Card key={index} className={`relative overflow-hidden hover:shadow-xl transition-shadow duration-300 ${service.popular ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card key={index} className={`relative overflow-hidden hover:shadow-xl transition-shadow duration-300 ${service.popular ? 'ring-2 ring-orange-500' : ''}`}>
                 {service.popular && (
-                  <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                     Most Popular
                   </div>
                 )}
@@ -133,7 +133,7 @@ const Services = () => {
                 <CardHeader className="pb-4">
                   <CardTitle className="text-2xl font-bold text-gray-900">{service.title}</CardTitle>
                   <p className="text-gray-600">{service.description}</p>
-                  <div className="text-2xl font-bold text-blue-600 mt-2">{service.pricing}</div>
+                  <div className="text-2xl font-bold text-orange-600 mt-2">{service.pricing}</div>
                 </CardHeader>
                 
                 <CardContent className="space-y-4">
@@ -146,7 +146,7 @@ const Services = () => {
                     ))}
                   </div>
                   
-                  <Button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  <Button className="w-full mt-6 bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600">
                     Get Started
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
