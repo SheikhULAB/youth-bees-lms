@@ -48,8 +48,10 @@ export const StatsSection = () => {
                 <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110 group-hover:shadow-2xl">
                   <IconComponent className="h-10 w-10 text-white" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold mb-2 group-hover:scale-105 transition-transform">
-                  {stat.number}
+                <div className="text-3xl md:text-4xl font-bold mb-2 group-hover:scale-105 transition-transform animate-fade-in">
+                  <span className="inline-block animate-pulse hover:animate-none">
+                    {stat.number}
+                  </span>
                 </div>
                 <div className="text-white/90 font-medium">{stat.label}</div>
               </div>

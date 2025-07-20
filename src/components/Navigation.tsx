@@ -1,43 +1,34 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Menu, X, BookOpen, BriefcaseIcon, Video, User, Calendar } from "lucide-react";
-
+import { Menu, X, BookOpen, BriefcaseIcon, Video, Calendar } from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "/" },
     { name: "Courses", href: "/courses", icon: BookOpen },
     { name: "Services", href: "/services" },
     { name: "Events", href: "/events", icon: Calendar },
     { name: "1:1 Sessions", href: "/sessions", icon: Video },
     { name: "Jobs", href: "/jobs", icon: BriefcaseIcon },
+    { name: "Our Brand Partner", href: "/brand-partners" },
   ];
 
   return (
     <nav className="bg-white shadow-lg fixed w-full top-0 z-50 border-b-2 border-primary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="relative p-2 rounded-xl bg-gradient-to-br from-white via-primary/5 to-accent/10 shadow-lg border border-primary/10 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-                <img 
-                  src="/images/youthbeeslogo1.jpeg" 
-                  alt="YouthBees Logo" 
-                  className="h-10 w-auto filter brightness-110 contrast-110 group-hover:brightness-125 transition-all duration-300"
-                />
-              </div>
-              <span className="text-2xl font-black bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent group-hover:from-accent group-hover:via-primary group-hover:to-accent transition-all duration-300">
-                YouthBees
-              </span>
-            </Link>
-          </div>
+        <div className="flex justify-between items-center h-20">
+          {/* Logo enlarged to 80px */}
+          <Link to="/" className="flex-shrink-0">
+            <img
+              src="/images/youth-bees-logo.png"
+              alt="YouthBees Logo"
+              className="h-40 w-auto drop-shadow-md brightness-110 transition-all duration-200 hover:brightness-125"
+            />
+          </Link>
 
-          {/* Desktop Navigation - Centered */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex flex-1 justify-center">
             <div className="flex items-center space-x-6">
               {navItems.map((item) => (
@@ -53,7 +44,7 @@ export const Navigation = () => {
             </div>
           </div>
 
-          {/* Desktop Auth Buttons */}
+          {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-3 flex-shrink-0">
             <Link to="/login">
               <Button variant="ghost" className="text-foreground hover:text-primary hover:bg-primary/10 font-semibold">
@@ -65,12 +56,9 @@ export const Navigation = () => {
                 Get Started
               </Button>
             </Link>
-            <Button variant="ghost" size="icon" className="text-foreground hover:text-primary hover:bg-primary/10">
-              <User className="h-5 w-5" />
-            </Button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}

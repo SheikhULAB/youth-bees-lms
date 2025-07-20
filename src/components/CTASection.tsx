@@ -30,7 +30,7 @@ export const CTASection = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-2 border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3 hover:scale-105 transition-all duration-300 font-bold shadow-xl"
+            className="border-2 border-white text-white hover:bg-white hover:text-primary bg-transparent text-lg px-8 py-3 hover:scale-105 transition-all duration-300 font-bold shadow-xl"
           >
             Explore Courses
           </Button>

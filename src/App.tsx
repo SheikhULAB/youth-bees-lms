@@ -16,6 +16,7 @@ import Index from "./pages";
 import Courses from "./pages/Courses";
 import Services from "./pages/Services";
 import Events from "./pages/Events";
+import BrandPartners from "./pages/BrandPartners";
 
 const queryClient = new QueryClient();
 
@@ -25,13 +26,14 @@ const App = () => (
       <Toaster />
       {/* <Sonner /> */}
       <BrowserRouter>
-        <Routes>
+      <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/events" element={<Events/>} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/brand-partners" element={<BrandPartners />} />
           <Route path="/dashboard/student" element={<StudentDashboard />} />
           <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
           <Route path="/dashboard/partner" element={<PartnerDashboard />} />
