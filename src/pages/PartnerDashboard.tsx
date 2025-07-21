@@ -8,7 +8,9 @@ import { Textarea } from "../components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Badge } from "../components/ui/badge";
-import { BookOpen, DollarSign, Users, TrendingUp, Plus, Edit, Trash2, Eye } from "lucide-react";
+import { Progress } from "../components/ui/progress";
+import { BookOpen, DollarSign, Users, TrendingUp, Plus, Edit, Trash2, Eye, Activity, Award, BarChart3, PieChart, Globe, Star } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart as RechartsPie, Cell, AreaChart, Area } from 'recharts';
 
 const PartnerDashboard = () => {
   const [activeTab, setActiveTab] = useState("courses");
@@ -45,64 +47,229 @@ const PartnerDashboard = () => {
     totalCourses: courses.length,
     totalEnrollments: courses.reduce((sum, course) => sum + course.enrollments, 0),
     totalRevenue: 125000,
-    pendingPayouts: 15000
+    pendingPayouts: 15000,
+    conversionRate: 3.2,
+    averageRating: 4.6
   };
 
+  const revenueData = [
+    { month: 'Jan', revenue: 18000, enrollments: 45 },
+    { month: 'Feb', revenue: 22000, enrollments: 58 },
+    { month: 'Mar', revenue: 19000, enrollments: 52 },
+    { month: 'Apr', revenue: 28000, enrollments: 72 },
+    { month: 'May', revenue: 25000, enrollments: 65 },
+    { month: 'Jun', revenue: 32000, enrollments: 89 },
+  ];
+
+  const categoryPerformance = [
+    { category: 'Programming', revenue: 45000, courses: 12, color: '#8884d8' },
+    { category: 'Design', revenue: 28000, courses: 8, color: '#82ca9d' },
+    { category: 'Marketing', revenue: 35000, courses: 6, color: '#ffc658' },
+    { category: 'Business', revenue: 17000, courses: 4, color: '#ff7300' },
+  ];
+
+  const studentProgress = [
+    { course: 'Web Development', completion: 78, students: 156 },
+    { course: 'Digital Marketing', completion: 85, students: 89 },
+    { course: 'UI/UX Design', completion: 72, students: 124 },
+    { course: 'Python Basics', completion: 91, students: 67 },
+  ];
+
+  const trafficSources = [
+    { source: 'Direct', percentage: 35 },
+    { source: 'Social Media', percentage: 28 },
+    { source: 'Search Engine', percentage: 22 },
+    { source: 'Referrals', percentage: 15 },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Partner Dashboard</h1>
-          <p className="text-gray-600">Manage your courses and track your performance on YouthBees.</p>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">Partner Dashboard</h1>
+          <p className="text-gray-600 text-lg">Manage your courses and track your performance on YouthBees.</p>
+          <div className="mt-4 flex items-center space-x-4">
+            <Badge variant="secondary" className="text-sm">
+              <Activity className="h-4 w-4 mr-1" />
+              Premium Partner
+            </Badge>
+            <Badge variant="secondary" className="text-sm">
+              <Award className="h-4 w-4 mr-1" />
+              4.6★ Average Rating
+            </Badge>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
+          <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
             <CardContent className="flex items-center p-6">
-              <BookOpen className="h-8 w-8 text-blue-600 mr-3" />
+              <BookOpen className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalCourses}</p>
+                <p className="text-sm font-medium text-blue-100">Total Courses</p>
+                <p className="text-2xl font-bold">{stats.totalCourses}</p>
+                <p className="text-xs text-blue-200">Active</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
             <CardContent className="flex items-center p-6">
-              <Users className="h-8 w-8 text-purple-600 mr-3" />
+              <Users className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Enrollments</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalEnrollments}</p>
+                <p className="text-sm font-medium text-purple-100">Total Enrollments</p>
+                <p className="text-2xl font-bold">{stats.totalEnrollments}</p>
+                <p className="text-xs text-purple-200">+23 this week</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
             <CardContent className="flex items-center p-6">
-              <DollarSign className="h-8 w-8 text-green-600 mr-3" />
+              <DollarSign className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Revenue</p>
-                <p className="text-2xl font-bold text-gray-900">৳{stats.totalRevenue}</p>
+                <p className="text-sm font-medium text-green-100">Total Revenue</p>
+                <p className="text-2xl font-bold">৳{stats.totalRevenue}</p>
+                <p className="text-xs text-green-200">+12% this month</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
             <CardContent className="flex items-center p-6">
-              <TrendingUp className="h-8 w-8 text-orange-600 mr-3" />
+              <TrendingUp className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">Pending Payouts</p>
-                <p className="text-2xl font-bold text-gray-900">৳{stats.pendingPayouts}</p>
+                <p className="text-sm font-medium text-orange-100">Pending Payouts</p>
+                <p className="text-2xl font-bold">৳{stats.pendingPayouts}</p>
+                <p className="text-xs text-orange-200">Available soon</p>
               </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+            <CardContent className="flex items-center p-6">
+              <BarChart3 className="h-8 w-8 mr-3" />
+              <div>
+                <p className="text-sm font-medium text-indigo-100">Conversion Rate</p>
+                <p className="text-2xl font-bold">{stats.conversionRate}%</p>
+                <p className="text-xs text-indigo-200">Above average</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-r from-pink-500 to-pink-600 text-white">
+            <CardContent className="flex items-center p-6">
+              <Star className="h-8 w-8 mr-3" />
+              <div>
+                <p className="text-sm font-medium text-pink-100">Avg Rating</p>
+                <p className="text-2xl font-bold">{stats.averageRating}</p>
+                <p className="text-xs text-pink-200">From 245 reviews</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Analytics Overview */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <TrendingUp className="h-5 w-5 mr-2" />
+                Revenue & Enrollment Trends
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={250}>
+                <AreaChart data={revenueData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Area type="monotone" dataKey="revenue" stackId="1" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                  <Area type="monotone" dataKey="enrollments" stackId="2" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Category Performance</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={200}>
+                <RechartsPie>
+                  <RechartsPie
+                    data={categoryPerformance}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={40}
+                    outerRadius={80}
+                    dataKey="revenue"
+                  >
+                    {categoryPerformance.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </RechartsPie>
+                  <Tooltip />
+                </RechartsPie>
+              </ResponsiveContainer>
+              <div className="mt-4 space-y-2">
+                {categoryPerformance.map((item) => (
+                  <div key={item.category} className="flex items-center justify-between text-sm">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: item.color }}></div>
+                      <span>{item.category}</span>
+                    </div>
+                    <span className="font-medium">৳{item.revenue}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Student Progress & Traffic */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Student Course Progress</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {studentProgress.map((course) => (
+                <div key={course.course}>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-sm font-medium">{course.course}</span>
+                    <span className="text-sm text-gray-500">{course.completion}% • {course.students} students</span>
+                  </div>
+                  <Progress value={course.completion} className="h-2" />
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Traffic Sources</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {trafficSources.map((source) => (
+                <div key={source.source}>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-sm font-medium">{source.source}</span>
+                    <span className="text-sm text-gray-500">{source.percentage}%</span>
+                  </div>
+                  <Progress value={source.percentage} className="h-2" />
+                </div>
+              ))}
             </CardContent>
           </Card>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="courses">My Courses</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-            <TabsTrigger value="payouts">Payouts</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-white/50 backdrop-blur-sm">
+            <TabsTrigger value="courses" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">My Courses</TabsTrigger>
+            <TabsTrigger value="analytics" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Analytics</TabsTrigger>
+            <TabsTrigger value="payouts" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Payouts</TabsTrigger>
           </TabsList>
 
           <TabsContent value="courses" className="space-y-4">
@@ -172,48 +339,50 @@ const PartnerDashboard = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courses.map((course) => (
-                <Card key={course.id} className="overflow-hidden">
-                  <div className="aspect-video">
+                <Card key={course.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+                  <div className="aspect-video relative">
                     <img src={course.image} alt={course.title} className="w-full h-full object-cover" />
-                  </div>
-                  <CardContent className="p-4">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-semibold text-lg">{course.title}</h3>
-                      <Badge variant="default">{course.status}</Badge>
+                    <div className="absolute top-3 right-3">
+                      <Badge variant="default" className="bg-white/90 text-gray-700">
+                        {course.status}
+                      </Badge>
                     </div>
-                    <p className="text-sm text-gray-600 mb-3">{course.description}</p>
+                    <div className="absolute bottom-3 left-3">
+                      <Badge variant="secondary" className="bg-black/70 text-white">
+                        {course.enrollments} students
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg mb-2">{course.title}</h3>
+                    <p className="text-sm text-gray-600 mb-4">{course.description}</p>
                     
-                    <div className="space-y-2 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>Instructor:</span>
-                        <span>{course.instructor}</span>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Instructor:</span>
+                        <span className="text-sm font-medium">{course.instructor}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Price:</span>
-                        <span className="font-semibold">৳{course.price}</span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Price:</span>
+                        <span className="text-lg font-bold text-green-600">৳{course.price}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Enrollments:</span>
-                        <span>{course.enrollments}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Rating:</span>
-                        <span>{course.rating} ⭐</span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-600">Rating:</span>
+                        <div className="flex items-center">
+                          <span className="text-sm font-medium mr-1">{course.rating}</span>
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex space-x-2 mt-4">
-                      <Button size="sm" variant="outline">
+                    <div className="flex space-x-2 mt-6">
+                      <Button size="sm" variant="outline" className="flex-1">
                         <Eye className="h-4 w-4 mr-1" />
                         View
                       </Button>
-                      <Button size="sm" variant="outline">
+                      <Button size="sm" className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white flex-1">
                         <Edit className="h-4 w-4 mr-1" />
                         Edit
-                      </Button>
-                      <Button size="sm" variant="outline" className="text-red-600 border-red-600 hover:bg-red-50">
-                        <Trash2 className="h-4 w-4 mr-1" />
-                        Delete
                       </Button>
                     </div>
                   </CardContent>

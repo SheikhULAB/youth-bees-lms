@@ -7,7 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
-import { Video, DollarSign, Clock, User, Calendar, Star, CheckCircle, XCircle } from "lucide-react";
+import { Progress } from "../components/ui/progress";
+import { Video, DollarSign, Clock, User, Calendar, Star, CheckCircle, XCircle, TrendingUp, Activity, Award, BookOpen, Users2, Target, MessageSquare } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 
 const TeacherDashboard = () => {
   const [activeTab, setActiveTab] = useState("requests");
@@ -78,62 +80,217 @@ const TeacherDashboard = () => {
     }
   ];
 
+  const earningsData = [
+    { month: 'Jan', earnings: 8000, sessions: 12 },
+    { month: 'Feb', earnings: 12000, sessions: 18 },
+    { month: 'Mar', earnings: 9500, sessions: 15 },
+    { month: 'Apr', earnings: 15000, sessions: 22 },
+    { month: 'May', earnings: 11000, sessions: 16 },
+    { month: 'Jun', earnings: 18000, sessions: 25 },
+  ];
+
+  const subjectDistribution = [
+    { subject: 'React', sessions: 45, color: '#8884d8' },
+    { subject: 'JavaScript', sessions: 32, color: '#82ca9d' },
+    { subject: 'Python', sessions: 28, color: '#ffc658' },
+    { subject: 'Career Guidance', sessions: 15, color: '#ff7300' },
+  ];
+
+  const studentFeedback = [
+    { category: 'Clarity', score: 4.8 },
+    { category: 'Patience', score: 4.9 },
+    { category: 'Knowledge', score: 4.7 },
+    { category: 'Engagement', score: 4.6 },
+  ];
+
+  const weeklySchedule = [
+    { day: 'Mon', sessions: 4 },
+    { day: 'Tue', sessions: 3 },
+    { day: 'Wed', sessions: 5 },
+    { day: 'Thu', sessions: 2 },
+    { day: 'Fri', sessions: 6 },
+    { day: 'Sat', sessions: 3 },
+    { day: 'Sun', sessions: 1 },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100 p-4">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Teacher Dashboard</h1>
-          <p className="text-gray-600">Manage your teaching sessions and track your earnings.</p>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">Teacher Dashboard</h1>
+          <p className="text-gray-600 text-lg">Manage your teaching sessions and track your earnings.</p>
+          <div className="mt-4 flex items-center space-x-4">
+            <Badge variant="secondary" className="text-sm">
+              <Activity className="h-4 w-4 mr-1" />
+              4.8 average rating
+            </Badge>
+            <Badge variant="secondary" className="text-sm">
+              <Award className="h-4 w-4 mr-1" />
+              Top 10% teacher
+            </Badge>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+          <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
             <CardContent className="flex items-center p-6">
-              <Video className="h-8 w-8 text-blue-600 mr-3" />
+              <Video className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">Pending Requests</p>
-                <p className="text-2xl font-bold text-gray-900">{sessionRequests.length}</p>
+                <p className="text-sm font-medium text-blue-100">Pending Requests</p>
+                <p className="text-2xl font-bold">{sessionRequests.length}</p>
+                <p className="text-xs text-blue-200">+2 today</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
             <CardContent className="flex items-center p-6">
-              <Calendar className="h-8 w-8 text-purple-600 mr-3" />
+              <Calendar className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">Scheduled Sessions</p>
-                <p className="text-2xl font-bold text-gray-900">{scheduledSessions.length}</p>
+                <p className="text-sm font-medium text-purple-100">Scheduled Sessions</p>
+                <p className="text-2xl font-bold">{scheduledSessions.length}</p>
+                <p className="text-xs text-purple-200">Next: 2 hours</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
             <CardContent className="flex items-center p-6">
-              <DollarSign className="h-8 w-8 text-green-600 mr-3" />
+              <DollarSign className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">This Month</p>
-                <p className="text-2xl font-bold text-gray-900">৳{earnings.thisMonth}</p>
+                <p className="text-sm font-medium text-green-100">This Month</p>
+                <p className="text-2xl font-bold">৳{earnings.thisMonth}</p>
+                <p className="text-xs text-green-200">+25% vs last month</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
             <CardContent className="flex items-center p-6">
-              <Star className="h-8 w-8 text-orange-600 mr-3" />
+              <Star className="h-8 w-8 mr-3" />
               <div>
-                <p className="text-sm font-medium text-gray-600">Avg Rating</p>
-                <p className="text-2xl font-bold text-gray-900">4.8</p>
+                <p className="text-sm font-medium text-orange-100">Avg Rating</p>
+                <p className="text-2xl font-bold">4.8</p>
+                <p className="text-xs text-orange-200">From 127 reviews</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white">
+            <CardContent className="flex items-center p-6">
+              <BookOpen className="h-8 w-8 mr-3" />
+              <div>
+                <p className="text-sm font-medium text-indigo-100">Total Students</p>
+                <p className="text-2xl font-bold">234</p>
+                <p className="text-xs text-indigo-200">Across all sessions</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Analytics Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <Card className="lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <TrendingUp className="h-5 w-5 mr-2" />
+                Earnings & Sessions Trend
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={200}>
+                <LineChart data={earningsData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="earnings" stroke="#10b981" strokeWidth={2} />
+                  <Line type="monotone" dataKey="sessions" stroke="#8b5cf6" strokeWidth={2} />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Weekly Schedule</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart data={weeklySchedule}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="day" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="sessions" fill="#06b6d4" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Performance Metrics */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Student Feedback Scores</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {studentFeedback.map((item) => (
+                <div key={item.category}>
+                  <div className="flex justify-between mb-2">
+                    <span className="text-sm font-medium">{item.category}</span>
+                    <span className="text-sm text-gray-500">{item.score}/5.0</span>
+                  </div>
+                  <Progress value={item.score * 20} className="h-2" />
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Subject Distribution</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={200}>
+                <PieChart>
+                  <Pie
+                    data={subjectDistribution}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={40}
+                    outerRadius={80}
+                    dataKey="sessions"
+                  >
+                    {subjectDistribution.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="mt-4 space-y-2">
+                {subjectDistribution.map((item) => (
+                  <div key={item.subject} className="flex items-center justify-between text-sm">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: item.color }}></div>
+                      <span>{item.subject}</span>
+                    </div>
+                    <span className="font-medium">{item.sessions} sessions</span>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="requests">Session Requests</TabsTrigger>
-            <TabsTrigger value="schedule">My Schedule</TabsTrigger>
-            <TabsTrigger value="earnings">Earnings</TabsTrigger>
-            <TabsTrigger value="reviews">Student Reviews</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-4 bg-white/50 backdrop-blur-sm">
+            <TabsTrigger value="requests" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Session Requests</TabsTrigger>
+            <TabsTrigger value="schedule" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">My Schedule</TabsTrigger>
+            <TabsTrigger value="earnings" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Earnings</TabsTrigger>
+            <TabsTrigger value="reviews" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Student Reviews</TabsTrigger>
           </TabsList>
 
           <TabsContent value="requests" className="space-y-4">
