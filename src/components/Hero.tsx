@@ -68,35 +68,12 @@ export const Hero = () => {
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl p-8 shadow-2xl">
-              <div className="bg-white rounded-2xl p-6 space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <BookOpen className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Live Session</h3>
-                    <p className="text-sm text-gray-500">Web Development Bootcamp</p>
-                  </div>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium text-gray-700">Progress</span>
-                    <span className="text-sm font-bold text-blue-600">78%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full" style={{ width: '78%' }}></div>
-                  </div>
-                </div>
-                <div className="flex space-x-2">
-                  <Button size="sm" className="bg-gradient-to-r from-blue-500 to-purple-600">
-                    Join Now
-                  </Button>
-                  <Button size="sm" variant="outline">
-                    Schedule
-                  </Button>
-                </div>
-              </div>
+            <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-6 shadow-2xl border border-primary/10">
+              <img 
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=600&fit=crop&crop=face" 
+                alt="Professional mentor and educator" 
+                className="w-full h-auto rounded-2xl object-cover shadow-lg"
+              />
             </div>
             
             {/* Floating elements */}
