@@ -1,7 +1,6 @@
 
 import { ArrowRight, Play, BookOpen, Users, TrendingUp, Star } from "lucide-react";
 import { Button } from "./ui/button";
-
 export const Hero = () => {
   return (
     <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
@@ -67,22 +66,12 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-6 shadow-2xl border border-primary/10">
-              <img 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=600&fit=crop&crop=face" 
-                alt="Professional mentor and educator" 
-                className="w-full h-auto rounded-2xl object-cover shadow-lg"
-              />
-            </div>
-            
-            {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 bg-yellow-400 rounded-full p-3 shadow-lg animate-bounce">
-              <Star className="h-6 w-6 text-white" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-green-400 rounded-full p-3 shadow-lg animate-pulse">
-              <TrendingUp className="h-6 w-6 text-white" />
-            </div>
+          <div className="flex justify-center">
+            <img 
+              src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              alt="Young students learning together" 
+              className="w-full h-full min-h-[500px] object-cover rounded-2xl shadow-lg"
+            />
           </div>
         </div>
       </div>
