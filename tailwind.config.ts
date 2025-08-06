@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// YouthBees logo colors
+				'logo-orange': 'hsl(var(--logo-orange))',
+				'logo-yellow': 'hsl(var(--logo-yellow))',
+				'logo-green': 'hsl(var(--logo-green))',
+				'logo-red': 'hsl(var(--logo-red))',
+				'logo-pink': 'hsl(var(--logo-pink))',
+				'logo-blue': 'hsl(var(--logo-blue))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

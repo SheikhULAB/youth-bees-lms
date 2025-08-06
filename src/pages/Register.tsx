@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../co
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Eye, EyeOff, Mail, Lock, User, Phone, GraduationCap } from "lucide-react";
 import { Navigation } from "../components/Navigation";
+import { useAuth } from '../contexts/AuthContext';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,20 +19,39 @@ const Register = () => {
     studentId: "",
     userType: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const { signUp, user } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Registration attempt:", formData);
-    // TODO: Implement registration logic
+    setIsLoading(true);
+    
+    const { error } = await signUp(formData.email, formData.password);
+    
+    if (!error) {
+      // Registration successful - user will get email confirmation
+      // They will be redirected after confirming their email
+    }
+    
+    setIsLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-muted/50 to-accent/10">
       <Navigation />
       <div className="flex items-center justify-center p-4 pt-20">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <CardTitle className="text-2xl font-bold text-gradient">
               Join YouthBees
             </CardTitle>
             <CardDescription>
@@ -57,7 +77,7 @@ const Register = () => {
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="name"
                     type="text"
@@ -73,7 +93,7 @@ const Register = () => {
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="email"
                     type="email"
@@ -89,7 +109,7 @@ const Register = () => {
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone Number</Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="phone"
                     type="tel"
@@ -106,7 +126,7 @@ const Register = () => {
                 <div className="space-y-2">
                   <Label htmlFor="studentId">Student ID (Optional)</Label>
                   <div className="relative">
-                    <GraduationCap className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <GraduationCap className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="studentId"
                       type="text"
@@ -122,7 +142,7 @@ const Register = () => {
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -135,22 +155,22 @@ const Register = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
               </div>
 
-              <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                Create Account
+              <Button type="submit" className="w-full gradient-youthbees-warm text-primary-foreground" disabled={isLoading}>
+                {isLoading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 Already have an account?{" "}
-                <Link to="/login" className="text-blue-600 hover:underline font-medium">
+                <Link to="/login" className="text-primary hover:underline font-medium">
                   Sign in
                 </Link>
               </div>
@@ -163,3 +183,4 @@ const Register = () => {
 };
 
 export default Register;
+
