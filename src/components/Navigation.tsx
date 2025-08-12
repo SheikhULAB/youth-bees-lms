@@ -22,7 +22,7 @@ export const Navigation = () => {
           {/* Logo enlarged to 80px */}
           <Link to="/" className="flex-shrink-0">
             <img
-              src="/images/youth-bees-logo.png"
+              src="/images/Youthbees-Logo-AI.png"
               alt="YouthBees Logo"
               className="h-40 w-auto drop-shadow-md brightness-110 transition-all duration-200 hover:brightness-125"
             />
